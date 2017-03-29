@@ -1,0 +1,256 @@
+tr > th {
+	background-color: #A52266;
+	border-top-left-radius:10px;
+	border-top-right-radius:10px;
+	color: white;
+	text-shadow: 1px 2px black;
+}
+
+tr > td {
+	background-color: hsla(70,100%,50%,0.5);
+}
+
+table {
+	border-radius:15px;
+	border: 4px solid yellow;
+	background-color: rgba(255,0,0,0.6);
+	box-shadow:-15px 15px 10px black;
+}
+td > table {
+	width:500px;
+	box-shadow: 0px 0px 10px black;
+}
+ul > li {
+	color: goldenrod;
+
+}
+
+table tr {
+	color: black;
+}
+
+tr:nth-child(2n) {
+	color: blue;
+	font-weight: bold;
+}
+
+footer > p {
+	background-color: darkseagreen;
+	text-align: center;
+	margin:auto;
+	width:25%;
+	border: 3px dashed yellow;
+	padding:12px;
+	position: relative;
+}
+
+h1 {
+	font-size: 30px;
+	text-align: center;
+}
+h3 {
+	font-size:20px;
+	text-align:center;
+}
+
+#glowna{
+	font-size:250%;
+	text-align:center;
+
+}
+
+#rozszerzenie:hover{
+	animation: skew 15s;
+}
+
+#powitanie{
+	font-size: 1.4em;
+	text-align:center;
+	padding: 50px;
+}
+
+#rozszerzenie{
+	font-size:150%;
+	padding:10px;
+}
+
+@media all and (orientation: landscape){
+
+	#obrazek{
+		border: 30px solid transparent;
+		border-image-source: url(border/tor.png);
+		border-image-repeat:round;
+		border-image-slice:30 30 30 30;
+		width:700pt;
+		height:200pt;
+		margin-top:50px;
+		margin-bottom:50px;
+		position: relative;
+		left:300px;
+	}
+
+	.flexbox > div {
+		-webkit-columns: 250px 2; /* Chrome, Safari, Opera */
+		-moz-columns: 250px 2; /* Firefox */
+		columns: 250px 2;
+	}
+
+	.flexbox > div:hover {
+		-webkit-columns: 250px 3; /* Chrome, Safari, Opera */
+		-moz-columns: 250px 3; /* Firefox */
+		columns: 250px 3;
+	}
+
+}
+
+
+
+@media all and (orientation: portrait){
+
+	.flexbox > div {
+		-webkit-columns: auto; /* Chrome, Safari, Opera */
+		-moz-columns: auto; /* Firefox */
+		columns: auto;
+	}
+
+	.flexbox > div:hover {
+		-webkit-columns: auto; /* Chrome, Safari, Opera */
+		-moz-columns: auto; /* Firefox */
+		columns: auto;
+	}
+
+}
+
+#menu_glowne ul {
+	list-style:none;
+	text-align:center;
+}
+
+#menu_glowne ul a:hover {
+	transform: rotate(360deg) scale(1.35,1.35);
+}
+
+#menu_glowne ul li {
+	position:relative;
+	display:inline-block;
+}
+
+#menu_glowne ul ul li {
+	width:200px
+}
+
+#menu_glowne ul ul a {
+	line-height:120%;
+	padding:10px 15px
+}
+
+#menu_glowne ul ul ul {
+	top:0;
+	left:100%;
+}
+
+#menu_glowne ul li:hover > ul {
+	display:block;
+}
+
+.center{
+	margin-left:20%;
+	margin-right:20%;
+}
+
+.srodek{
+	text-align:center;
+}
+
+
+.flexbox {
+	width: 90%;
+}
+
+.flexbox > div {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 2px solid blue;
+	width: 60%;
+	height: 200px;
+	flex-wrap: wrap;
+	word-wrap: break-word;
+	overflow: hidden;
+	-webkit-column-gap: 70px; /* Chrome, Safari, Opera */
+	-moz-column-gap: 70px; /* Firefox */
+	column-gap: 70px;
+	-webkit-column-rule: 2px outset hsla(240, 70%, 20%, 0.7); /* Chrome, Safari, Opera */
+	-moz-column-rule: 2px outset hsla(240, 70%, 20%, 0.7); /* Firefox */
+	column-rule: 2px outset hsla(240, 70%, 20%, 0.7);
+}
+
+.flexbox > div > img {
+	float: left;
+	clear: both;
+}
+
+@keyframes skew{
+	from {transform: skewX(0deg);}
+	50% {transform: skewX(-45deg);}
+	to {transform: skewX(0deg);}
+}
+
+#animacja {
+	width: 5%;
+	margin-left:47.5%;
+	margin-right:47.5%;
+	height:auto;
+	position: fixed;
+	-webkit-animation: ciuchcia 30s infinite;
+	animation: ciuchcia 30s infinite;
+	z-index: 100;
+}
+
+@keyframes ciuchcia {
+
+
+	0% {
+		width: 5%;
+		margin-left: 47.5%;
+		margin-right: 47.5%;
+	}
+	100% {
+		width: 50%;
+		margin-left: 25%;
+		margin-right: 25%;
+	}
+}
+
+.powiekszenie{
+	height:500px;
+}
+
+.formularz > input[type="radio"],
+.formularz > input[type="checkbox"] {
+	opacity: 0.5;
+}
+
+.formularz > input[type="radio"]:checked,
+.formularz > input[type="checkbox"]:checked {
+	opacity: 1;
+}
+
+#loginmenu {
+	width: 26%;
+	background: rgba(53,255,242,0.6);
+	margin-left: 39%;
+	text-align: center;
+}
+
+#kom {
+	width: 50%;
+	height: 20%;
+	margin-left: 25%;
+	margin-right: 25%;
+	background: #dddddd;
+	text-align: center;
+}
+#poleGry{
+	background: rgba(255, 255, 255, 0.72);
+}

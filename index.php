@@ -16,6 +16,7 @@
 			<nav id="menu_glowne">
 				<ul>
 				  <li><a href="#">Strona Główna</a></li>
+				  <li><a href="rejestracja.php">Rejestracja</a></li>
 				  <li><a href="#">Do pobrania</a></li>
 				  <li><a href="#">Rozkład jazdy</a></li>
 				  <li><a href="gra.php">Symulator DR</a></li>

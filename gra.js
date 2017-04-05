@@ -196,6 +196,14 @@ function zamianaSm(semafor, sygnal) {
 }
 
 function generowanieMapy(szablon, poziom){
+	/*var odpowiedz = szablon.split(";");
+	for (i = 0; i < odpowiedz.length; i += 2) {
+		temp = document.createElement("IMG");
+        temp.src = odpowiedz[i];
+		temp.addEventListener("click", function(){wyslanieSygnaluZmiany(odpowiedz[i+1]);});
+        document.getElementById(poziom).appendChild(temp);
+	}
+	*/
 	var odpowiedz = szablon.split(";");
 	for (i = 0; i < odpowiedz.length; i += 1) {
         switch (parseInt(odpowiedz[i])) {

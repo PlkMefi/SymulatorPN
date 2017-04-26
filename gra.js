@@ -1,4 +1,4 @@
-﻿/*global window: false, document: false */
+﻿ /*global window: false, document: false */
 /*jslint for: true */
 
 var kafelki0 = {};
@@ -7,6 +7,9 @@ var kafelki2 = {};
 var kafelki3 = {};
 var kafelki4 = {};
 var kafelki5 = {};
+var id = 0;
+var blokadySem = [0,0,0,0];
+var blokadyZw = [0,0];
 
 var zw1St = 1;
 var zw2St = 1;
@@ -22,38 +25,50 @@ var dlTor1 = 8;
 
 function zamianaZw1() {
     "use strict";
-    var temp;
-    if (zw1St === 1) {
-        temp = document.createElement("IMG");
-        temp.src = "gameAssets/kafelMinusGora.png";
-        document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz]);
-        kafelki4[zw1Poz] = temp;
-        zw1St = 0;
-    } else {
-        temp = document.createElement("IMG");
-        temp.src = "gameAssets/kafelPlusGora.png";
-        document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz]);
-        kafelki4[zw1Poz] = temp;
-        zw1St = 1;
-    }
+	if(blokadyZw[0]===0){
+		var temp;
+		if (zw1St === 1) {
+			temp = document.createElement("IMG");
+			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + 1].getAttribute("id"));
+			temp.setAttribute("class","zwrotnica");
+			temp.src = "gameAssets/kafelMinusGora.png";
+			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz]);
+			kafelki4[zw1Poz] = temp;
+			zw1St = 0;
+		} else {
+			temp = document.createElement("IMG");
+			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + 1].getAttribute("id"));
+			temp.setAttribute("class","zwrotnica");
+			temp.src = "gameAssets/kafelPlusGora.png";
+			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz]);
+			kafelki4[zw1Poz] = temp;
+			zw1St = 1;
+		}
+	}
 }
 
 function zamianaZw2() {
     "use strict";
-    var temp;
-    if (zw2St === 1) {
-        temp = document.createElement("IMG");
-        temp.src = "gameAssets/kafelMinusGoraTyl.png";
-        document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz + dlTor1 + 3]);
-        kafelki4[zw1Poz + dlTor1 + 3] = temp;
-        zw2St = 0;
-    } else {
-        temp = document.createElement("IMG");
-        temp.src = "gameAssets/kafelPlusGoraTyl.png";
-        document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz + dlTor1 + 3]);
-        kafelki4[zw1Poz + dlTor1 + 3] = temp;
-        zw2St = 1;
-    }
+	if(blokadyZw[1]===0){
+		var temp;
+		if (zw2St === 1) {
+			temp = document.createElement("IMG");
+			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + dlTor1 + 4].getAttribute("id"));
+			temp.setAttribute("class","zwrotnica");
+			temp.src = "gameAssets/kafelMinusGoraTyl.png";
+			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz + dlTor1 + 3]);
+			kafelki4[zw1Poz + dlTor1 + 3] = temp;
+			zw2St = 0;
+		} else {
+			temp = document.createElement("IMG");
+			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + dlTor1 + 4].getAttribute("id"));
+			temp.setAttribute("class","zwrotnica");
+			temp.src = "gameAssets/kafelPlusGoraTyl.png";
+			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz + dlTor1 + 3]);
+			kafelki4[zw1Poz + dlTor1 + 3] = temp;
+			zw2St = 1;
+		}
+	}
 }
 
 function zamianaSm(semafor, sygnal) {
@@ -68,21 +83,28 @@ function zamianaSm(semafor, sygnal) {
                 temp.src = "gameAssets/kafelSemCzer.png";
                 document.getElementById("gra1").replaceChild(temp, kafelki1[zw1Poz + 2]);
                 kafelki1[zw1Poz + 2] = temp;
+				blokadyZw[0] = 0;
                 sem1 = 0;
             } else {
-                temp = document.createElement("IMG");
-                temp.src = "gameAssets/kafelSemZiel.png";
-                document.getElementById("gra1").replaceChild(temp, kafelki1[zw1Poz + 2]);
-                kafelki1[zw1Poz + 2] = temp;
-                sem1 = 1;
+				if(zw1St===0){
+					temp = document.createElement("IMG");
+					temp.src = "gameAssets/kafelSemZiel.png";
+					document.getElementById("gra1").replaceChild(temp, kafelki1[zw1Poz + 2]);
+					kafelki1[zw1Poz + 2] = temp;
+					sem1 = 1;
+					blokadyZw[0] = 1;
+				}
             }
             break;
         case "m":
-            temp = document.createElement("IMG");
-            temp.src = "gameAssets/kafelSemMan.png";
-            document.getElementById("gra1").replaceChild(temp, kafelki1[zw1Poz + 2]);
-            kafelki1[zw1Poz + 2] = temp;
-            sem1 = 1;
+			if(zw1St===0){
+				temp = document.createElement("IMG");
+				temp.src = "gameAssets/kafelSemMan.png";
+				document.getElementById("gra1").replaceChild(temp, kafelki1[zw1Poz + 2]);
+				kafelki1[zw1Poz + 2] = temp;
+				sem1 = 1;
+				blokadyZw[0] = 1;
+			}
             break;
         case "sz":
             temp = document.createElement("IMG");
@@ -101,21 +123,28 @@ function zamianaSm(semafor, sygnal) {
                 temp.src = "gameAssets/kafelSemCzer.png";
                 document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + 2]);
                 kafelki3[zw1Poz + 2] = temp;
+				blokadyZw[0] = 0;
                 sem2 = 0;
             } else {
-                temp = document.createElement("IMG");
-                temp.src = "gameAssets/kafelSemZiel.png";
-                document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + 2]);
-                kafelki3[zw1Poz + 2] = temp;
-                sem2 = 1;
+				if(zw1St===1){
+					temp = document.createElement("IMG");
+					temp.src = "gameAssets/kafelSemZiel.png";
+					document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + 2]);
+					kafelki3[zw1Poz + 2] = temp;
+					sem2 = 1;
+					blokadyZw[0] = 1;
+				}
             }
             break;
         case "m":
-            temp = document.createElement("IMG");
-            temp.src = "gameAssets/kafelSemMan.png";
-            document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + 2]);
-            kafelki3[zw1Poz + 2] = temp;
-            sem2 = 1;
+			if(zw1St===1){
+				temp = document.createElement("IMG");
+				temp.src = "gameAssets/kafelSemMan.png";
+				document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + 2]);
+				kafelki3[zw1Poz + 2] = temp;
+				sem2 = 1;
+				blokadyZw[0] = 1;
+			}
             break;
         case "sz":
             temp = document.createElement("IMG");
@@ -134,21 +163,28 @@ function zamianaSm(semafor, sygnal) {
                 temp.src = "gameAssets/kafelSemCzer.png";
                 document.getElementById("gra5").replaceChild(temp, kafelki5[zw1Poz + dlTor1 + 1]);
                 kafelki5[zw1Poz + dlTor1 + 1] = temp;
+				blokadyZw[1] = 0;
                 sem3 = 0;
             } else {
-                temp = document.createElement("IMG");
-                temp.src = "gameAssets/kafelSemZielTyl.png";
-                document.getElementById("gra5").replaceChild(temp, kafelki5[zw1Poz + dlTor1 + 1]);
-                kafelki5[zw1Poz + dlTor1 + 1] = temp;
-                sem3 = 1;
+				if(zw2St===1){
+					temp = document.createElement("IMG");
+					temp.src = "gameAssets/kafelSemZielTyl.png";
+					document.getElementById("gra5").replaceChild(temp, kafelki5[zw1Poz + dlTor1 + 1]);
+					kafelki5[zw1Poz + dlTor1 + 1] = temp;
+					sem3 = 1;
+					blokadyZw[1] = 1;
+				}
             }
             break;
         case "m":
-            temp = document.createElement("IMG");
-            temp.src = "gameAssets/kafelSemManTyl.png";
-            document.getElementById("gra5").replaceChild(temp, kafelki5[zw1Poz + dlTor1 + 1]);
-            kafelki5[zw1Poz + dlTor1 + 1] = temp;
-            sem3 = 1;
+			if(zw2St===1){
+				temp = document.createElement("IMG");
+				temp.src = "gameAssets/kafelSemManTyl.png";
+				document.getElementById("gra5").replaceChild(temp, kafelki5[zw1Poz + dlTor1 + 1]);
+				kafelki5[zw1Poz + dlTor1 + 1] = temp;
+				sem3 = 1;
+				blokadyZw[1] = 1;
+			}
             break;
         case "sz":
             temp = document.createElement("IMG");
@@ -167,21 +203,28 @@ function zamianaSm(semafor, sygnal) {
                 temp.src = "gameAssets/kafelSemCzer.png";
                 document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + dlTor1 + 1]);
                 kafelki3[zw1Poz + dlTor1 + 1] = temp;
+				blokadyZw[1] = 0;
                 sem4 = 0;
             } else {
-                temp = document.createElement("IMG");
-                temp.src = "gameAssets/kafelSemZielTyl.png";
-                document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + dlTor1 + 1]);
-                kafelki3[zw1Poz + dlTor1 + 1] = temp;
-                sem4 = 1;
+				if(zw2St===0){
+					temp = document.createElement("IMG");
+					temp.src = "gameAssets/kafelSemZielTyl.png";
+					document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + dlTor1 + 1]);
+					kafelki3[zw1Poz + dlTor1 + 1] = temp;
+					sem4 = 1;
+					blokadyZw[1] = 1;
+				}
             }
             break;
         case "m":
-            temp = document.createElement("IMG");
-            temp.src = "gameAssets/kafelSemManTyl.png";
-            document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + dlTor1 + 1]);
-            kafelki3[zw1Poz + dlTor1 + 1] = temp;
-            sem4 = 1;
+			if(zw2St===0){
+				temp = document.createElement("IMG");
+				temp.src = "gameAssets/kafelSemManTyl.png";
+				document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + dlTor1 + 1]);
+				kafelki3[zw1Poz + dlTor1 + 1] = temp;
+				sem4 = 1;
+				blokadyZw[1] = 1;
+			}
             break;
         case "sz":
             temp = document.createElement("IMG");
@@ -211,54 +254,81 @@ function generowanieMapy(szablon, poziom){
             break;
         case 1:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem1SZ.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(106);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 2:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem1M.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(105);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 3:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem2SZ.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(108);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 4:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem2M.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(107);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 5:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem3SZ.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(110);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 6:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem3M.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(109);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 7:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem4SZ.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(112);});
             document.getElementById("gra0").appendChild(temp);
             break;
         case 8:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","przyrzadPomocniczy");
+			id += 1;
             temp.src = "gameAssets/kafelSem4M.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(111);});
             document.getElementById("gra0").appendChild(temp);
             break;
 		case 10:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","semfor");
+			id += 1;
             temp.src = "gameAssets/kafelSemCzer.png";
 			switch(poziom){
 				case 1:
@@ -277,6 +347,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 11:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","semfor");
+			id += 1;
             temp.src = "gameAssets/kafelSem1.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(101);});
 			document.getElementById("gra1").appendChild(temp);
@@ -284,6 +357,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 12:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","tor");
+			id += 1;
             temp.src = "gameAssets/kafelZwG1.png";
 			switch(poziom){
 				case 2:
@@ -298,6 +374,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 13:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","tor");
+			id += 1;
             temp.src = "gameAssets/kafelZwG4.png";
 			switch(poziom){
 				case 2:
@@ -312,6 +391,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 14:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","tor");
+			id += 1;
             temp.src = "gameAssets/kafelOffProsty.png";
 			switch(poziom){
 				case 2:
@@ -326,6 +408,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 15:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","tor");
+			id += 1;
             temp.src = "gameAssets/kafelZwG2.png";
 			switch(poziom){
 				case 3:
@@ -336,6 +421,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 16:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","tor");
+			id += 1;
             temp.src = "gameAssets/kafelZwG3.png";
 			switch(poziom){
 				case 3:
@@ -346,6 +434,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 17:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","semafor");
+			id += 1;
             temp.src = "gameAssets/kafelSem2.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(102);});
 			document.getElementById("gra3").appendChild(temp);
@@ -353,6 +444,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 18:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","semafor");
+			id += 1;
             temp.src = "gameAssets/kafelSem4.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(104);});
 			document.getElementById("gra3").appendChild(temp);
@@ -360,6 +454,9 @@ function generowanieMapy(szablon, poziom){
 			break;
 		case 19:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","zwrotnica");
+			id += 1;
             temp.src = "gameAssets/kafelPlusGora.png";
 			switch(poziom){
 				case 4:
@@ -370,6 +467,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 20:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","zwrotnica");
+			id += 1;
             temp.src = "gameAssets/kafelPlusGoraTyl.png";
 			switch(poziom){
 				case 4:
@@ -380,6 +480,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 21:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","glowicaZwrotnicy");
+			id += 1;
             temp.src = "gameAssets/kafelZw1.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(113);});
 			document.getElementById("gra5").appendChild(temp);
@@ -387,6 +490,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 22:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","glowicaZwrotnicy");
+			id += 1;
             temp.src = "gameAssets/kafelZw1.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(114);});
 			document.getElementById("gra5").appendChild(temp);
@@ -394,6 +500,9 @@ function generowanieMapy(szablon, poziom){
             break;
 		case 23:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","semafor");
+			id += 1;
             temp.src = "gameAssets/kafelSem3.png";
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(103);});
 			document.getElementById("gra5").appendChild(temp);
@@ -401,6 +510,9 @@ function generowanieMapy(szablon, poziom){
             break;
         default:
             temp = document.createElement("IMG");
+			temp.setAttribute("id",id);
+			temp.setAttribute("class","pulpit");
+			id += 1;
             temp.src = "gameAssets/kafel.png";
 			switch(poziom){
 				case 0:
@@ -543,5 +655,3 @@ function generatorPlanszy() {
 	xmlhttp.open("GET", "gameCode/generatorPoziomowPlanszy.php?id="+zapytanie, true);
 	xmlhttp.send();
 }
-
-

@@ -31,6 +31,8 @@ function zamianaZw1() {
 			temp = document.createElement("IMG");
 			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + 1].getAttribute("id"));
 			temp.setAttribute("class","zwrotnica");
+			temp.setAttribute("dir1","w");
+			temp.setAttribute("dir2","n");
 			temp.src = "gameAssets/kafelMinusGora.png";
 			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz]);
 			kafelki4[zw1Poz] = temp;
@@ -39,10 +41,63 @@ function zamianaZw1() {
 			temp = document.createElement("IMG");
 			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + 1].getAttribute("id"));
 			temp.setAttribute("class","zwrotnica");
+			temp.setAttribute("dir1","w");
+			temp.setAttribute("dir2","e");
 			temp.src = "gameAssets/kafelPlusGora.png";
 			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz]);
 			kafelki4[zw1Poz] = temp;
 			zw1St = 1;
+		}
+	}
+}
+
+//poziom - id poziomu np. "gra0", "gra1"
+//ind - to indeks kafelka w poziomie, razem z poziomem tworzą współrzędne kafelka
+//kierunek tos kierunek w którym będziemy sprawdzać przebieg, 1 - w prawo, 0 - w lewo
+function sprawdzeniePrzebiegu(poziom, ind, kierunek){
+	if(ind>1){
+		var poziomGry = "gra"+poziom;
+		//alert(poziomGry);
+		//alert(ind);
+		//alert(document.getElementById(poziomGry).childNodes[ind].src);
+		if(kierunek==1){
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="e"){
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w"){
+					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelOnProsty.png";
+				}
+			}else{
+				
+			}
+		}
+		if(kierunek==0){
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir1")=="w"){
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelOffProsty.png"){
+					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelOnProsty.png";
+				}
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG2.png"){
+					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG2ON.png";
+				}
+				//alert(document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png");
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png"){
+					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelNOn.png";
+				}
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelPlusGora.png"){
+					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelEOn.png";
+				}
+			}
+			var poziomGryNext = poziom+1;
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir1")=="s"){
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir2")=="n" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG1.png"){
+					sprawdzeniePrzebiegu(poziom+1, ind, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG1ON.png";
+				}
+			}
+			
 		}
 	}
 }
@@ -55,6 +110,8 @@ function zamianaZw2() {
 			temp = document.createElement("IMG");
 			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + dlTor1 + 4].getAttribute("id"));
 			temp.setAttribute("class","zwrotnica");
+			temp.setAttribute("dir1","n");
+			temp.setAttribute("dir2","e");
 			temp.src = "gameAssets/kafelMinusGoraTyl.png";
 			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz + dlTor1 + 3]);
 			kafelki4[zw1Poz + dlTor1 + 3] = temp;
@@ -63,6 +120,8 @@ function zamianaZw2() {
 			temp = document.createElement("IMG");
 			temp.setAttribute("id",document.getElementById("gra4").childNodes[zw1Poz + dlTor1 + 4].getAttribute("id"));
 			temp.setAttribute("class","zwrotnica");
+			temp.setAttribute("dir1","w");
+			temp.setAttribute("dir2","e");
 			temp.src = "gameAssets/kafelPlusGoraTyl.png";
 			document.getElementById("gra4").replaceChild(temp, kafelki4[zw1Poz + dlTor1 + 3]);
 			kafelki4[zw1Poz + dlTor1 + 3] = temp;
@@ -87,6 +146,7 @@ function zamianaSm(semafor, sygnal) {
                 sem1 = 0;
             } else {
 				if(zw1St===0){
+					sprawdzeniePrzebiegu(2,9,0);
 					temp = document.createElement("IMG");
 					temp.src = "gameAssets/kafelSemZiel.png";
 					document.getElementById("gra1").replaceChild(temp, kafelki1[zw1Poz + 2]);
@@ -127,6 +187,7 @@ function zamianaSm(semafor, sygnal) {
                 sem2 = 0;
             } else {
 				if(zw1St===1){
+					sprawdzeniePrzebiegu(4,9,0);
 					temp = document.createElement("IMG");
 					temp.src = "gameAssets/kafelSemZiel.png";
 					document.getElementById("gra3").replaceChild(temp, kafelki3[zw1Poz + 2]);
@@ -363,10 +424,14 @@ function generowanieMapy(szablon, poziom){
             temp.src = "gameAssets/kafelZwG1.png";
 			switch(poziom){
 				case 2:
+					temp.setAttribute("dir1","s");
+					temp.setAttribute("dir2","e");
 					document.getElementById("gra2").appendChild(temp);
 					kafelki2[i-1] = temp;
 					break;
 				case 3:
+					temp.setAttribute("dir1","s");
+					temp.setAttribute("dir2","e");
 					document.getElementById("gra3").appendChild(temp);
 					kafelki3[i-1] = temp;
 					break;
@@ -380,10 +445,14 @@ function generowanieMapy(szablon, poziom){
             temp.src = "gameAssets/kafelZwG4.png";
 			switch(poziom){
 				case 2:
+					temp.setAttribute("dir1","w");
+					temp.setAttribute("dir2","s");
 					document.getElementById("gra2").appendChild(temp);
 					kafelki2[i-1] = temp;
 					break;
 				case 3:
+					temp.setAttribute("dir1","w");
+					temp.setAttribute("dir2","s");
 					document.getElementById("gra3").appendChild(temp);
 					kafelki3[i-1] = temp;
 					break;
@@ -393,6 +462,8 @@ function generowanieMapy(szablon, poziom){
             temp = document.createElement("IMG");
 			temp.setAttribute("id",id);
 			temp.setAttribute("class","tor");
+			temp.setAttribute("dir1","w");
+			temp.setAttribute("dir2","e");
 			id += 1;
             temp.src = "gameAssets/kafelOffProsty.png";
 			switch(poziom){
@@ -414,6 +485,8 @@ function generowanieMapy(szablon, poziom){
             temp.src = "gameAssets/kafelZwG2.png";
 			switch(poziom){
 				case 3:
+					temp.setAttribute("dir1","w");
+					temp.setAttribute("dir2","n");
 					document.getElementById("gra3").appendChild(temp);
 					kafelki3[i-1] = temp;
 					break;
@@ -427,6 +500,8 @@ function generowanieMapy(szablon, poziom){
             temp.src = "gameAssets/kafelZwG3.png";
 			switch(poziom){
 				case 3:
+					temp.setAttribute("dir1","n");
+					temp.setAttribute("dir2","e");
 					document.getElementById("gra3").appendChild(temp);
 					kafelki3[i-1] = temp;
 					break;
@@ -456,6 +531,8 @@ function generowanieMapy(szablon, poziom){
             temp = document.createElement("IMG");
 			temp.setAttribute("id",id);
 			temp.setAttribute("class","zwrotnica");
+			temp.setAttribute("dir1","w");
+			temp.setAttribute("dir2","e");
 			id += 1;
             temp.src = "gameAssets/kafelPlusGora.png";
 			switch(poziom){
@@ -471,6 +548,8 @@ function generowanieMapy(szablon, poziom){
 			temp.setAttribute("class","zwrotnica");
 			id += 1;
             temp.src = "gameAssets/kafelPlusGoraTyl.png";
+			temp.setAttribute("dir1","w");
+			temp.setAttribute("dir2","e");
 			switch(poziom){
 				case 4:
 					document.getElementById("gra4").appendChild(temp);

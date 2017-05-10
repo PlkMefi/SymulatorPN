@@ -36,6 +36,12 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>witamy</title>
+	<div id="google_translate_element"></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'pl', includedLanguages: 'de,en,pl', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
 </head>
 
 <body>
@@ -46,7 +52,7 @@
 				  <li><a href="#">Do pobrania</a></li>
 				  <li><a href="#">Rozkład jazdy</a></li>
 				  <li><a href="gra.php">Symulator DR</a></li>
-				  <li><a href="#">Kontakt</a></li>
+				  <li><a href="kontakt.html">Kontakt</a></li>
 				</ul>
 			</nav>
 	

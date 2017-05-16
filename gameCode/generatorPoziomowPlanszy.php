@@ -6,6 +6,7 @@
 	define("WIIELKOSC_POZIOMU",25);
 	define("ZW1POZ",6);
 	define("DLTOR1",8);
+	define("SEMA",3);
 	$sem1 = 0;
 	$sem2 = 0;
 	$sem3 = 0;
@@ -128,6 +129,12 @@
 		case 5:
 			for ($i = 0; $i < WIIELKOSC_POZIOMU; $i++) {
 				switch ($i) {
+					case SEMA:
+						$poziom0[$i] = 24;
+						break;
+					case SEMA-1:
+						$poziom0[$i] = 25;
+						break;
 					case ZW1POZ:
 						$poziom0[$i] = 21;
 						break;

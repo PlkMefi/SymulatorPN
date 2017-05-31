@@ -21,6 +21,9 @@ var sem3 = 0;
 var sem4 = 0;
 var sema = 0;
 
+var tor1Zaj = false;
+var tor2Zaj = false;
+
 var wielkoscPlanszy = 25;
 var dlTor1 = 8;
 
@@ -66,30 +69,56 @@ function sprawdzeniePrzebiegu(poziom, ind, kierunek){
 				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelOffProsty.png"){
 					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelOnProsty.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelPlusGoraTyl.png"){
 					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelWOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG3.png"){
 					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG3ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGoraTyl.png"){
 					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelBNOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelPlusGora.png"){
 					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelEOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+				
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG1.png"){
+					sprawdzeniePrzebiegu(poziom, ind+1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG1ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 			}
-			var poziomGryNext = poziom+1;
-			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="s"){
-				//alert("check");
+			//alert(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="n");
+			var poziomGryNext = poziom-1;
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="n" ){
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="s" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG2.png"){
+					sprawdzeniePrzebiegu(poziom-1, ind, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG2ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="s" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png"){
+					sprawdzeniePrzebiegu(poziom-1, ind, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelNOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+			}
+			poziomGryNext = poziom+1;
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="s" ){
+				//alert(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="n");
 				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="n" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG4.png"){
 					sprawdzeniePrzebiegu(poziom+1, ind, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG4ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 			}
 			
@@ -102,19 +131,23 @@ function sprawdzeniePrzebiegu(poziom, ind, kierunek){
 				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelOffProsty.png"){
 					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelOnProsty.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG2.png"){
 					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG2ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				//alert(document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png");
 				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png"){
 					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelNOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelPlusGora.png"){
 					sprawdzeniePrzebiegu(poziom, ind-1, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelEOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
 				}
 			}
 			var poziomGryNext = poziom+1;
@@ -122,9 +155,214 @@ function sprawdzeniePrzebiegu(poziom, ind, kierunek){
 				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir2")=="n" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG1.png"){
 					sprawdzeniePrzebiegu(poziom+1, ind, kierunek);
 					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG1ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+			}
+		}
+	}
+}
+
+function pociagRusza(poziom, ind, kierunek){
+		//alert();
+		if(ind == 25){
+			setTimeout(function(){if(sem3==1){
+				blokadySem[2]=0;
+				blokadyZw[1]=0;
+				zamianaSm("sm3","zas");
+			}
+			if(sem4==1){
+				blokadySem[3]=0;
+				blokadyZw[1]=0;
+				zamianaSm("sm4","zas");
+				zamianaZw2();
+			}},12000);
+		}
+		if(ind>1 && ind < 25){
+		var poziomGry = "gra"+poziom;
+		//alert(poziomGry);
+		//alert(ind);
+		//alert(document.getElementById(poziomGry).childNodes[ind].src);
+		var boolZnak = true;
+		//alert(document.getElementById(poziomGry).childNodes[ind+5].getAttribute("class"));
+		if(ind+5<document.getElementById(poziomGry).childNodes.length){
+			if(document.getElementById(poziomGry).childNodes[ind+5].getAttribute("class")==="znak"){
+				boolZnak = false;
+			}
+		}
+		
+		if(kierunek==1 && boolZnak){
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="e" ){
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelOnProsty.png"){
+					setTimeout(function(){pociagRusza(poziom, ind+1, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZajProsty.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelOffProsty.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelWOn.png"){
+					setTimeout(function(){pociagRusza(poziom, ind+1, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelPrzeGoraTylPlusZaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelPlusGoraTyl.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG3ON.png"){
+					setTimeout(function(){pociagRusza(poziom, ind+1, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG3Zaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG3.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelBNOn.png"){
+					setTimeout(function(){pociagRusza(poziom, ind+1, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelPrzeGoraTylMinusZaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelMinusGoraTyl.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelEOn.png"){
+					setTimeout(function(){pociagRusza(poziom, ind+1, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelPrzeGoraPlusZaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelPlusGora.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+				if(document.getElementById(poziomGry).childNodes[ind+1].getAttribute("dir1")=="w" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG1ON.png"){
+					setTimeout(function(){pociagRusza(poziom, ind+1, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG1Zaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG1.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+			}
+			//alert(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="n");
+			var poziomGryNext = poziom-1;
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="n" ){
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="s" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG2ON.png"){
+					setTimeout(function(){pociagRusza(poziom-1, ind, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG2Zaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG2.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="s" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelNOn.png"){
+					setTimeout(function(){pociagRusza(poziom-1, ind, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelPrzeGoraMinusZaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelMinusGora.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
+				}
+			}
+			poziomGryNext = poziom+1;
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir2")=="s" ){
+				//alert(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="n");
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir1")=="n" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG4ON.png"){
+					setTimeout(function(){pociagRusza(poziom+1, ind, kierunek);},3000);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG4Zaj.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+					setTimeout(function(){
+						document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG4.png";
+						document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","wol");
+					},12000);
 				}
 			}
 			
+		}
+		var poziomGryNext = poziom+1;
+		if(kierunek==1 && (!boolZnak)){
+			document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZajProsty.png";
+			document.getElementById(poziomGry).childNodes[ind+1].src="gameAssets/kafelZajProsty.png";
+			document.getElementById(poziomGry).childNodes[ind+2].src="gameAssets/kafelZajProsty.png";
+			document.getElementById(poziomGry).childNodes[ind+3].src="gameAssets/kafelZajProsty.png";
+			document.getElementById(poziomGry).childNodes[ind+4].src="gameAssets/kafelZajProsty.png";
+			//alert(document.getElementById("gra"+poziomGryNext).childNodes[ind+4].getAttribute("src")=="gameAssets/kafelSem3.png");
+			if(document.getElementById("gra"+poziomGryNext).childNodes[ind+4].getAttribute("src")=="gameAssets/kafelSem3.png"){
+				tor1Zaj = true;
+				blokadyZw[0]=0;
+				blokadySem[4]=0;
+				zamianaSm("sma","zas");
+				if(sem3==1){
+					setTimeout(function(){pociagRusza(4,16,1)},12000);
+					setTimeout(function(){
+						document.getElementById("gra4").childNodes[zw1Poz + dlTor1 + 1].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra4").childNodes[zw1Poz + dlTor1].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 1].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 2].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 3].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 4].src="gameAssets/kafelOffProsty.png";
+						tor1Zaj = false;
+					},21000);
+				}
+				
+			}
+			if(document.getElementById("gra"+poziomGryNext).childNodes[ind+4].getAttribute("src")=="gameAssets/kafelSem4.png"){
+				tor2Zaj = true;
+				blokadyZw[0]=0;
+				blokadySem[4]=0;
+				zamianaSm("sma","zas");
+				zamianaZw1();
+				if(sem4==1){
+					setTimeout(function(){pociagRusza(2,16,1)},12000);
+					setTimeout(function(){
+						document.getElementById("gra2").childNodes[zw1Poz + dlTor1 + 1].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra2").childNodes[zw1Poz + dlTor1].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 1].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 2].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 3].src="gameAssets/kafelOffProsty.png";
+						document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 4].src="gameAssets/kafelOffProsty.png";
+						tor2Zaj = false;
+					},21000);
+				}
+			}
+		}
+		if(kierunek==0){
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir1")=="w"){
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelOffProsty.png"){
+					pociagRusza(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelOnProsty.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG2.png"){
+					pociagRusza(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG2ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+				//alert(document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png");
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelMinusGora.png"){
+					pociagRusza(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelNOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+				if(document.getElementById(poziomGry).childNodes[ind-1].getAttribute("dir2")=="e" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelPlusGora.png"){
+					pociagRusza(poziom, ind-1, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelEOn.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+			}
+			var poziomGryNext = poziom+1;
+			if(document.getElementById(poziomGry).childNodes[ind].getAttribute("dir1")=="s"){
+				if(document.getElementById("gra"+poziomGryNext).childNodes[ind].getAttribute("dir2")=="n" && document.getElementById(poziomGry).childNodes[ind].getAttribute("src")==="gameAssets/kafelZwG1.png"){
+					pociagRusza(poziom+1, ind, kierunek);
+					document.getElementById(poziomGry).childNodes[ind].src="gameAssets/kafelZwG1ON.png";
+					document.getElementById(poziomGry).childNodes[ind].setAttribute("zaj","zabl");
+				}
+			}
 		}
 	}
 }
@@ -163,22 +401,27 @@ function zamianaSm(semafor, sygnal) {
     switch (semafor) {
     case "sma":
         if (sema === 1 && blokadySem[4]===0) {
-            temp = document.createElement("IMG");
-            temp.src = "gameAssets/kafelSemCzer.png";
-            document.getElementById("gra5").replaceChild(temp, kafelki5[3]);
-            kafelki5[3] = temp;
-			blokadyZw[4] = 0;
-            sema = 0;
-        } else {
-			if(blokadySem[4]===0){
-				sprawdzeniePrzebiegu(4,3,1);
+			
 				temp = document.createElement("IMG");
-				temp.src = "gameAssets/kafelSemZiel.png";
+				temp.src = "gameAssets/kafelSemCzer.png";
 				document.getElementById("gra5").replaceChild(temp, kafelki5[3]);
 				kafelki5[3] = temp;
-				sema = 1;
-				blokadyZw[0] = 1;
-				blokadySem[4] = 1;
+				blokadyZw[4] = 0;
+				sema = 0;
+			
+        } else {
+			if(blokadySem[4]===0){
+				if(!((tor1Zaj && zw1St == 1)||(tor2Zaj && zw1St == 0))){
+					sprawdzeniePrzebiegu(4,3,1);
+					temp = document.createElement("IMG");
+					temp.src = "gameAssets/kafelSemZiel.png";
+					document.getElementById("gra5").replaceChild(temp, kafelki5[3]);
+					kafelki5[3] = temp;
+					sema = 1;
+					blokadyZw[0] = 1;
+					blokadySem[4] = 1;
+					setTimeout(function(){pociagRusza(4,3,1)},3000);
+				}
 			}
         }
         break;
@@ -202,6 +445,7 @@ function zamianaSm(semafor, sygnal) {
 					sem1 = 1;
 					blokadyZw[0] = 1;
 					blokadySem[0] = 1;
+					//setTimeout(function(){pociagRusza(2,9,0)},3000);
 				}
             }
             break;
@@ -286,6 +530,18 @@ function zamianaSm(semafor, sygnal) {
 					sem3 = 1;
 					blokadyZw[1] = 1;
 					blokadySem[2] = 1;
+					if(tor1Zaj){
+						setTimeout(function(){pociagRusza(4,16,1)},3000);
+						setTimeout(function(){
+							document.getElementById("gra4").childNodes[zw1Poz + dlTor1 + 1].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra4").childNodes[zw1Poz + dlTor1].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 1].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 2].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 3].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra4").childNodes[zw1Poz + dlTor1 - 4].src="gameAssets/kafelOffProsty.png";
+						},12000);
+					}
+					
 				}
             }
             break;
@@ -328,6 +584,19 @@ function zamianaSm(semafor, sygnal) {
 					sem4 = 1;
 					blokadyZw[1] = 1;
 					blokadySem[3] = 1;
+					if(tor2Zaj){
+						setTimeout(function(){pociagRusza(2,16,1)},3000);
+						setTimeout(function(){pociagRusza(2,16,1)},12000);
+						setTimeout(function(){
+							document.getElementById("gra2").childNodes[zw1Poz + dlTor1 + 1].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra2").childNodes[zw1Poz + dlTor1].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 1].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 2].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 3].src="gameAssets/kafelOffProsty.png";
+							document.getElementById("gra2").childNodes[zw1Poz + dlTor1 - 4].src="gameAssets/kafelOffProsty.png";
+							tor1Zaj = false;
+						},12000);
+					}
 				}
             }
             break;
@@ -584,6 +853,7 @@ function generowanieMapy(szablon, poziom){
 			temp.setAttribute("class","semafor");
 			id += 1;
             temp.src = "gameAssets/kafelSem4.png";
+			document.getElementById("gra2").childNodes[i+1].setAttribute("class","znak");
 			temp.addEventListener("click", function(){wyslanieSygnaluZmiany(104);});
 			document.getElementById("gra3").appendChild(temp);
 			kafelki3[i-1] = temp;

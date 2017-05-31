@@ -33,7 +33,7 @@
 	
 	$database = mysqli_select_db($connection, "kspn");
 	
-	$query = "SELECT haslo FROM uzytkownicy ;";
+	$query = "SELECT haslo FROM uzytkownicy WHERE login ='".$_POST['username']."';";
 	$result = mysqli_query($connection,$query);
 
 	$tempArray = mysqli_fetch_array($result);

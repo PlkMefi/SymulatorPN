@@ -21,9 +21,9 @@ function googleTranslateElementInit() {
 			
 			<nav id="menu_glowne">
 				<ul>
-				  <li><a href="#">Strona Główna</a></li>
+				  <li><a href="index.php">Strona Główna</a></li>
 				  <li><a href="rejestracja.php">Rejestracja</a></li>
-				  <li><a href="#">Do pobrania</a></li>
+				  <li><a href="zk.php">Zarzadzanie kontami</a></li>
 				  <li><a href="#">Rozkład jazdy</a></li>
 				  <li><a href="gra.php">Symulator DR</a></li>
 				  <li><a href="kontakt.html">Kontakt</a></li>
@@ -46,9 +46,9 @@ function googleTranslateElementInit() {
 				<p id=glowna><b>Niemal wszystko!</b> Znaczy na razie jest mało zawartości merytorycznej, aczkolwiek wraz z rozwojem naszej
 				strony pojawiać się będą nowe treści. Zapraszamy Was do kontaktowania się z nami poprzez specjalnie stworozny
 				formularz.
-			</article>
+		
 			
-			<article>
+			
 				<h3>Witaj na naszej stronie internetowej!</h3>
 				<p id=powitanie>Jesteśmy grupą znajomych, którzy postanowili stworzyć świetną <b>witrynę poświęconą polskiej kolei</b>.
 				Kolej istniała od starożytności w postaci kolei konnych wykorzystujących wyżłobienia w kamiennych

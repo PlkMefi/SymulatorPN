@@ -1,6 +1,5 @@
 <?php session_start();
   $redir = $_SERVER['HTTP_REFERER'];
-
   if ($_SERVER["REQUEST_METHOD"] === "GET"){
 	if (isset($_SESSION['username'])){
 		echo (string)$_SESSION['username'];
@@ -22,7 +21,7 @@
   		'password' => $_POST['password']
   	);
     $_SESSION['username'] = $dataArray['username'];
-	$connection = mysqli_connect("localhost:3306","root","123","test");
+	$connection = mysqli_connect("localhost","root","","kspn");
 	
 	if (!$connection) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
@@ -35,7 +34,6 @@
 	
 	$query = "SELECT haslo FROM uzytkownicy WHERE login ='".$_POST['username']."';";
 	$result = mysqli_query($connection,$query);
-
 	$tempArray = mysqli_fetch_array($result);
 	
 	if($tempArray[0]==$dataArray['password']){

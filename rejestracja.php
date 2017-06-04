@@ -72,7 +72,7 @@
 		
 		try 
 		{
-			$polaczenie = new mysqli("localhost:3306", "root", "123", "kspn");
+			$polaczenie = new mysqli("localhost","root","","kspn");
 			if ($polaczenie->connect_errno!=0)
 			{
 				throw new Exception(mysqli_connect_errno());
@@ -99,7 +99,7 @@
 					
 					
 					
-					if ($polaczenie->query("INSERT INTO `uzytkownicy`(`idUzytkownika`, `idTypuKonta`, `login`, `haslo`, `imie`, `nazwisko`, `email`) VALUES ($id,0,'$nick','$haslo1','$imie','$nazwisko','$email');"))
+					if ($polaczenie->query("INSERT INTO `uzytkownicy`(`idUzytkownika`, `idTypuKonta`, `login`, `haslo`, `imie`, `nazwisko`, `email`) VALUES ($id,1,'$nick','$haslo1','$imie','$nazwisko','$email');"))
 					{
 						$_SESSION['udanarejestracja']=true;
 						header('Location: witamy.php');

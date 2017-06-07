@@ -47,8 +47,7 @@ function googleTranslateElementInit() {
             <td>Punkty</td>
             <td>Update</td>
         </tr>
-		
-	
+
 		
        <?php 
 	   //1. POBRANIE Z SESJI USER LOGINU
@@ -134,7 +133,15 @@ function googleTranslateElementInit() {
 			}
 		
 		*/
-		
+	//	
+		if (isset($_SESSION['username'])){
+		echo (string)$_SESSION['username'];
+	}
+	
+	$text = (string)$_SESSION['username'];
+	
+			if ((string)$_SESSION['username'] == "SUPERADMIN")
+			{
 	   $result = mysqli_query($mysqli, "SELECT * FROM players ORDER BY punkty DESC");
         while($res = mysqli_fetch_array($result))
 			{   
@@ -143,21 +150,24 @@ function googleTranslateElementInit() {
             echo "<td>".$res['nazwisko']."</td>";
             echo "<td>".$res['punkty']."</td>";    
             echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> </td>";    
-			}
-	//}
-//} 
-//else {   
-	/*
-        while($res = mysqli_fetch_array($result)) {   
-            echo "<tr>";
-            echo "<td>".$res['imie']."</td>";
-            echo "<td>".$res['nazwisko']."</td>";
-            echo "<td>".$res['punkty']."</td>";    
-            echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> </td>";    
+			}			
 		}
-//}
-*/  
+			else	{
+		$result2 = mysqli_query($mysqli, "SELECT imie, nazwisko, email FROM uzytkownicy WHERE login = '$text'");		
+			while($res2 = mysqli_fetch_array($result2))
+				
+			{   
+            echo "<tr>";
+            echo "<td>".$res2[0]."</td>";
+            echo "<td>".$res2[1]."</td>";
+            echo "<td>".$res2[2]."</td>";    
+            echo "<td><a href=\"edit.php?id=$res[idUzytkownika]\">Edit</a> </td>";    
+			}	
+		}
+			
+			 
 ?>
+
  
     </table>			
 </body>

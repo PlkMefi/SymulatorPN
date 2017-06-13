@@ -94,7 +94,7 @@
 				
 				if ($wszystko_OK==true)
 				{
-					$rezultat = $polaczenie->query("SELECT * FROM uzytkownicy;");
+							$rezultat = $polaczenie->query("SELECT * FROM uzytkownicy;");
 					$id  = $rezultat->num_rows;
 					
 					

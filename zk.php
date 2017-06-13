@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
 	include_once("config.php");
 	//include_once("login.php");
 	session_start();
@@ -37,8 +38,6 @@ function googleTranslateElementInit() {
 			</nav>
 			
 	
-    <a href="add.html">Dodaj nowego uzytkownika</a><br/><br/>
-	
 
  <table width='80%' border=0>
         <tr bgcolor='#CCCCCC'>
@@ -55,9 +54,7 @@ function googleTranslateElementInit() {
 	// $user_id =  $_SESSION['user'];
 	// $sql = "SELECT idTypuKonta FROM uzytkownicy WHERE login = $user_id";
     // $resultat = $mysqli->query($sql);
-
 //if ($resultat == 0) {
-
     //$temp = $dataArray['username']
 	//$idTK = mysqli_query($mysqli, "SELECT idTypuKonta FROM uzytkownicy WHERE login = '$temp'");
 	
@@ -104,8 +101,6 @@ function googleTranslateElementInit() {
 				$rezultat = $polaczenie->query("SELECT * FROM uzytkownicy;");
 			}
 			*/
-
-
 		//5.JEDNO ZAPYTANIE			
 		//$rezultat = $polaczenie-> query("SELECT id FROM uzytkownicy WHERE email='$email'");
 		
@@ -136,12 +131,16 @@ function googleTranslateElementInit() {
 	//	
 		if (isset($_SESSION['username'])){
 		echo (string)$_SESSION['username'];
+		
 	}
 	
 	$text = (string)$_SESSION['username'];
 	
 			if ((string)$_SESSION['username'] == "SUPERADMIN")
 			{
+				
+    echo"<br><a href=\"add.html\">Dodaj nowego uzytkownika</a><br/><br/>";
+	
 	   $result = mysqli_query($mysqli, "SELECT * FROM players ORDER BY punkty DESC");
         while($res = mysqli_fetch_array($result))
 			{   
@@ -158,10 +157,10 @@ function googleTranslateElementInit() {
 				
 			{   
             echo "<tr>";
-            echo "<td>".$res2[0]."</td>";
-            echo "<td>".$res2[1]."</td>";
-            echo "<td>".$res2[2]."</td>";    
-            echo "<td><a href=\"edit.php?id=$res[idUzytkownika]\">Edit</a> </td>";    
+            echo "<td>".$res2['imie']."</td>";
+            echo "<td>".$res2['nazwisko']."</td>";
+            echo "<td>".$res2['email']."</td>";    
+           // echo "<td><a href=\"edit2.php?id=$res[id]\">Edit</a> </td>";    
 			}	
 		}
 			

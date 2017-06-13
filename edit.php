@@ -27,12 +27,9 @@ if(isset($_POST['update']))
     } else {    
         //updating the table
         $result = mysqli_query($mysqli, "UPDATE players SET imie='$imie', nazwisko='$nazwisko', punkty='$punkty' WHERE id=$id");
-
         header("Location: zk.php");
     }
 }
-
-
 //getting id from url
 $id = $_GET['id'];
  
@@ -43,9 +40,6 @@ while($res = mysqli_fetch_array($result))
     $nazwisko = $_POST['nazwisko'];
     $punkty = $_POST['punkty'];
 }
-
-
-
 ?>
 
 <html>

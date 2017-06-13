@@ -1,0 +1,14 @@
+1.PU ->
+	1. rejestracja usera  (Arnold Boczek)
+	2. logowanie
+	3. blokuj add.php  -> 	<a href="add.html">Dodaj nowego uzytkownika</a><br/><br/>
+	4. logout
+	5. zapis (show KSPN)
+	
+2.PU ->
+	1. login SUPERADMIN
+	2. odblokuj add.php	 -> 	<a href="add.html">Dodaj nowego uzytkownika</a><br/><br/>
+	3. edycja danych wszystkich
+	4. zapis (show KSPN)
+	5. dodaj new usera		(Johny Kowalski)
+	6. zapis (show KSPN)

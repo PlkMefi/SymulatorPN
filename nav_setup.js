@@ -44,3 +44,12 @@ function loadNavbar() {
     nav.appendChild(p);
   }
 }
+
+function getUserName()
+{
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", 'login.php?action="getusr"', false);
+	xhttp.send();
+	var username = xhttp.responseText;
+	return username;
+}

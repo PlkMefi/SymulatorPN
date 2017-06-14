@@ -61,17 +61,6 @@ function googleTranslateElementInit() {
 	</head>
 <body onload="loadNavbar();">
 			
-			<nav id="menu_glowne">
-				<ul>
-				  <li><a href="index.php">Strona Główna</a></li>
-				  <li><a href="rejestracja.php">Rejestracja</a></li>
-				  <li><a href="zk.php">Zarzadzanie kontami</a></li>
-				  <li><a href="#">Rozkład jazdy</a></li>
-				  <li><a href="gra.php">Symulator DR</a></li>
-				  <li><a href="kontakt.html">Kontakt</a></li>
-				</ul>
-			</nav>
-			
     <br/><br/>
     
     <form name="form1" method="post" action="edit.php">
@@ -90,7 +79,7 @@ function googleTranslateElementInit() {
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
+                <td><input type="submit" name="update" value="Aktualizuj"></td>
             </tr>
         </table>
     </form>

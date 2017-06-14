@@ -45,16 +45,40 @@ function googleTranslateElementInit() {
 </head>
 
 <body>
-	<nav id="menu_glowne">
-				<ul>
-				  <li><a href="index.php">Strona Główna</a></li>
-				  <li><a href="rejestracja.php">Rejestracja</a></li>
-				  <li><a href="#">Do pobrania</a></li>
-				  <li><a href="#">Rozkład jazdy</a></li>
-				  <li><a href="gra.php">Symulator DR</a></li>
-				  <li><a href="kontakt.html">Kontakt</a></li>
-				</ul>
-			</nav>
+	<?php
+				session_start();
+				if(!isset($_SESSION['username'])){
+					echo '<nav id="menu_glowne">
+							<ul id="mg_1">
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="rejestracja.php">Rejestracja</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+				}else{
+					if((string)$_SESSION['username'] == "SUPERADMIN"){
+						echo '<nav id="menu_glowne">
+							<ul>
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="zk.php">Zarzadzanie kontami</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="gra.php">Symulator DR</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+					}else{
+						echo '<nav id="menu_glowne">
+							<ul>
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="gra.php">Symulator DR</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+					}
+				}
+			?>
 	
 	<br><br><br><br>	
 	<h2 class="srodek">Dziękujemy za rejestrację w serwisie! Możesz już zalogować się na swoje konto!</h2><br /><br />

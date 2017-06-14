@@ -18,19 +18,41 @@ function googleTranslateElementInit() {
         
 	</head>
 <body onload="loadNavbar();">
-			
-			<nav id="menu_glowne">
-				<ul>
-				  <li><a href="index.php">Strona Główna</a></li>
-				  <li><a href="rejestracja.php">Rejestracja</a></li>
-				  <li><a href="zk.php">Zarzadzanie kontami</a></li>
-				  <li><a href="#">Rozkład jazdy</a></li>
-				  <li><a href="gra.php">Symulator DR</a></li>
-				  <li><a href="kontakt.html">Kontakt</a></li>
-				</ul>
-			</nav>
+			<?php
+				session_start();
+				if(!isset($_SESSION['username'])){
+					echo '<nav id="menu_glowne">
+							<ul id="mg_1">
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="rejestracja.php">Rejestracja</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+				}else{
+					if((string)$_SESSION['username'] == "SUPERADMIN"){
+						echo '<nav id="menu_glowne">
+							<ul>
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="zk.php">Zarzadzanie kontami</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="gra.php">Symulator DR</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+					}else{
+						echo '<nav id="menu_glowne">
+							<ul>
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="gra.php">Symulator DR</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+					}
+				}
+			?>
 			<nav id="loginmenu"></nav>
-			
 			<article>
 				<h3>Witaj na naszej stronie internetowej!</h3>
 				<p id=powitanie>Jesteśmy grupą znajomych, którzy postanowili stworzyć świetną <b>witrynę poświęconą polskiej kolei</b>.

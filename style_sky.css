@@ -32,9 +32,8 @@ body {
 	background-repeat: no-repeat,no-repeat,repeat-x,repeat-x;
 	background-position: bottom left, bottom right,bottom left, center top;
 	background-origin: border-box,border-box,border-box,content-box;
-	
+	background-size: auto, auto,  auto, 150%;
 	background-attachment: fixed, fixed, fixed, fixed;
-	/*bottom left, bottom right,bottom left*/
 }
 
 a:link {

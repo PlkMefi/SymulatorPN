@@ -21,7 +21,7 @@
   		'password' => $_POST['password']
   	);
     $_SESSION['username'] = $dataArray['username'];
-	$connection = mysqli_connect("localhost","root","","kspn");
+	$connection = mysqli_connect("localhost","root","123","kspn");
 	
 	if (!$connection) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;

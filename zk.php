@@ -25,17 +25,40 @@ function googleTranslateElementInit() {
         
 	</head>
 <body onload="loadNavbar();">
-			
-			<nav id="menu_glowne">
-				<ul>
-				  <li><a href="index.php">Strona Główna</a></li>
-				  <li><a href="rejestracja.php">Rejestracja</a></li>
-				  <li><a href="zk.php">Zarzadzanie kontami</a></li>
-				  <li><a href="#">Rozkład jazdy</a></li>
-				  <li><a href="gra.php">Symulator DR</a></li>
-				  <li><a href="kontakt.html">Kontakt</a></li>
-				</ul>
-			</nav>
+			<?php
+				session_start();
+				if(!isset($_SESSION['username'])){
+					echo '<nav id="menu_glowne">
+							<ul id="mg_1">
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="rejestracja.php">Rejestracja</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+				}else{
+					if((string)$_SESSION['username'] == "SUPERADMIN"){
+						echo '<nav id="menu_glowne">
+							<ul>
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="zk.php">Zarzadzanie kontami</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="gra.php">Symulator DR</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+					}else{
+						echo '<nav id="menu_glowne">
+							<ul>
+							  <li><a href="index.php">Strona Główna</a></li>
+							  <li><a href="#">Rozkład jazdy</a></li>
+							  <li><a href="gra.php">Symulator DR</a></li>
+							  <li><a href="kontaktWeb.php">Kontakt</a></li>
+							</ul>
+						</nav>';
+					}
+				}
+			?>
 			
 	
 
@@ -44,130 +67,37 @@ function googleTranslateElementInit() {
             <td>Imie</td>
             <td>Nazwisko</td>
             <td>Punkty</td>
-            <td>Update</td>
+            <td>Edytuj</td>
         </tr>
 
 		
-       <?php 
-	   //1. POBRANIE Z SESJI USER LOGINU
-	   //kurwa cos zle
-	// $user_id =  $_SESSION['user'];
-	// $sql = "SELECT idTypuKonta FROM uzytkownicy WHERE login = $user_id";
-    // $resultat = $mysqli->query($sql);
-//if ($resultat == 0) {
-    //$temp = $dataArray['username']
-	//$idTK = mysqli_query($mysqli, "SELECT idTypuKonta FROM uzytkownicy WHERE login = '$temp'");
-	
-	//if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  	//$username = $_POST['username'];
-	//}
-	
-	// 2. INCLUDE LOGIN.PHP I POBRANIE ZE ZMIENNEJ Z LOGIN.PHP LOGINU
-	//$text = "Zalogowano jako " . (string)$dataArray['username'];
-	//$idTK = null;
-	//$idTK = mysqli_query($mysqli, "SELECT idTypuKonta FROM uzytkownicy WHERE login = '$text'");
-	
-	// cos zrobic z indexem ? WTF
-	//$idTK = "SELECT idTypuKonta FROM uzytkownicy WHERE login ='".$_POST['username']."';";
-	//$temp = mysqli_fetch_assoc($idTK);
-	
-	
-	// 3. POLACZENIE Z BAZA NA NOWO
-	/*
-	try 
-		{
-			$polaczenie = new mysqli("localhost","root","","kspn");
-			if ($polaczenie->connect_errno!=0)
-			{
-				throw new Exception(mysqli_connect_errno());
-			}
-	$rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE email='$email'");
-	*/
-	
-	//$idTK = mysqli_fetch_array($query);
-	//echo $idTK;
-	//if ((string)$_POST['username'] == "SUPERADMIN") {
-		/* 
-		// 4.POLACZENIE Z BAZĄ
-		try 
-		{
-			$polaczenie = new mysqli("localhost","root","","kspn");
-			if ($polaczenie->connect_errno!=0)
-			{
-				throw new Exception(mysqli_connect_errno());
-			}
-			else
-			{
-				$rezultat = $polaczenie->query("SELECT * FROM uzytkownicy;");
-			}
-			*/
-		//5.JEDNO ZAPYTANIE			
-		//$rezultat = $polaczenie-> query("SELECT id FROM uzytkownicy WHERE email='$email'");
-		
-		/*
-		
-		6.FUNKCJYJNIE POBIERZ ID
-		function pobierzCel($id)
-  {
-    $celQuery = mysql_query("SELECT imie, nazwisko, email FROM players WHERE id = '$id'");
-    $cel = mysql_fetch_array($celQuery);
-    return $cel;
-  }
-  */
-  
-	/*
-	
-	7.POBRANIE UZYTKOWNIKA OD ID = 2 (ZWYKLY USER)
-		$res1 = mysqli_query ($mysqli, "SELECT * FROM uzytkownicy WHERE idUzytkownika = '2'");
-			while ($res1 = mysqli_fetch_array($res1))
-			{
-			echo "<tr>";
-            echo "<td>".$res['imie']."</td>";
-            echo "<td>".$res['nazwisko']."</td>";
-            echo "<td>".$res['email']."</td>";    
-			}
-		
-		*/
-	//	
+       <?php
 		if (isset($_SESSION['username'])){
-		echo (string)$_SESSION['username'];
-		
-	}
-	
-	$text = (string)$_SESSION['username'];
-	
-			if ((string)$_SESSION['username'] == "SUPERADMIN")
-			{
-				
-    echo"<br><a href=\"add.html\">Dodaj nowego uzytkownika</a><br/><br/>";
-	
-	   $result = mysqli_query($mysqli, "SELECT * FROM players ORDER BY punkty DESC");
-        while($res = mysqli_fetch_array($result))
-			{   
-            echo "<tr>";
-            echo "<td>".$res['imie']."</td>";
-            echo "<td>".$res['nazwisko']."</td>";
-            echo "<td>".$res['punkty']."</td>";    
-            echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> </td>";    
-			}			
-		}
-			else	{
-		$result2 = mysqli_query($mysqli, "SELECT imie, nazwisko, email FROM uzytkownicy WHERE login = '$text'");		
-			while($res2 = mysqli_fetch_array($result2))
-				
-			{   
-            echo "<tr>";
-            echo "<td>".$res2['imie']."</td>";
-            echo "<td>".$res2['nazwisko']."</td>";
-            echo "<td>".$res2['email']."</td>";    
-           // echo "<td><a href=\"edit2.php?id=$res[id]\">Edit</a> </td>";    
-			}	
-		}
 			
-			 
-?>
-
- 
-    </table>			
+			echo (string)$_SESSION['username'];
+		}
+		
+		$text = (string)$_SESSION['username'];
+		if ((string)$_SESSION['username'] == "SUPERADMIN"){		
+			echo"<br><a href=\"add.html\">Dodaj nowego uzytkownika</a><br/><br/>";
+		   $result = mysqli_query($mysqli, "SELECT * FROM players ORDER BY punkty DESC");
+			while($res = mysqli_fetch_array($result)){   
+				echo "<tr>";
+				echo "<td>".$res['imie']."</td>";
+				echo "<td>".$res['nazwisko']."</td>";
+				echo "<td>".$res['punkty']."</td>";    
+				echo "<td><a href=\"edit.php?id=$res[id]\">Edytuj</a> </td>";    
+				}			
+			}else{
+				$result2 = mysqli_query($mysqli, "SELECT imie, nazwisko, email FROM uzytkownicy WHERE login = '$text'");		
+				while($res2 = mysqli_fetch_array($result2)){   
+				echo "<tr>";
+				echo "<td>".$res2['imie']."</td>";
+				echo "<td>".$res2['nazwisko']."</td>";
+				echo "<td>".$res2['email']."</td>"; 
+				}	
+			}
+		?>
+</table>			
 </body>
 </html>	

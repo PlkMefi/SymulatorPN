@@ -167,6 +167,11 @@ h3 {
 	text-align:center;
 }
 
+.wykresy{
+	text-align:center;
+	height: 500px;
+}
+
 
 .flexbox {
 	width: 90%;

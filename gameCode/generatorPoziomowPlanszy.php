@@ -41,6 +41,9 @@
 					case 8:
 						$poziom0[$i] = 8;
 						break;
+					case 24:
+						$poziom0[$i] = 27;
+						break;
 					default:
 						$poziom0[$i] = 9;
 				}
@@ -104,6 +107,12 @@
 						$poziom0[$i] = 18;
 						break;
 					case ZW1POZ + 1 + DLTOR1:
+						$poziom0[$i] = 10;
+						break;
+					case 22:
+						$poziom0[$i] = 26;
+						break;
+					case 21:
 						$poziom0[$i] = 10;
 						break;
 					default:

@@ -1,6 +1,6 @@
 <?php
 // including the database connection file
-error_reporting(0);
+//error_reporting(0);
 include_once("config.php");
  
 if(isset($_POST['update']))
@@ -9,10 +9,10 @@ if(isset($_POST['update']))
    
     $imie= $_POST['imie'];
     $nazwisko= $_POST['nazwisko'];
-    $punkty= $_POST['punkty'];    
+    $email= $_POST['email'];    
     
     // checking empty fields
-    if(empty($imie) || empty($nazwisko) || empty($punkty)) {            
+    if(empty($imie) || empty($nazwisko) || empty($email)) {            
         if(empty($imie)) {
             echo "<font color='red'>Name field is empty.</font><br/>";
         }
@@ -21,24 +21,24 @@ if(isset($_POST['update']))
             echo "<font color='red'>sn field is empty.</font><br/>";
         }
         
-        if(empty($punkty)) {
+        if(empty($email)) {
             echo "<font color='red'> field is empty.</font><br/>";
         }        
     } else {    
         //updating the table
-        $result = mysqli_query($mysqli, "UPDATE players SET imie='$imie', nazwisko='$nazwisko', punkty='$punkty' WHERE id=$id");
+        $result = mysqli_query($mysqli, "UPDATE uzytkownicy SET imie='$imie', nazwisko='$nazwisko', email='$email' WHERE idUzytkownika=$id");
         header("Location: zk.php");
     }
 }
 //getting id from url
 $id = $_GET['id'];
  
-$result = mysqli_query($mysqli, "SELECT * FROM players WHERE id=$id");
+$result = mysqli_query($mysqli, "SELECT imie, nazwisko, email FROM uzytkownicy WHERE idUzytkownika=$id");
 while($res = mysqli_fetch_array($result))
 {
     $imie = $_POST['imie'];
     $nazwisko = $_POST['nazwisko'];
-    $punkty = $_POST['punkty'];
+    $email = $_POST['email'];
 }
 ?>
 
@@ -74,8 +74,8 @@ function googleTranslateElementInit() {
                 <td><input type="text" name="nazwisko" value="<?php echo $nazwisko;?>"></td>
             </tr>
             <tr> 
-                <td>Punkty</td>
-                <td><input type="value" name="punkty" value="<?php echo $punkty;?>"></td>
+                <td>Email</td>
+                <td><input type="text" name="email" value="<?php echo $email;?>"></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>

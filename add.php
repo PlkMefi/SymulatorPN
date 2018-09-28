@@ -31,7 +31,7 @@ if(isset($_POST['Submit'])) {
         //insert data to database
         $result = mysqli_query($mysqli, "INSERT INTO players(imie,nazwisko,punkty) VALUES('$imie','$nazwisko','$punkty')");
         
-        //display success message
+        //display success message aaaa
         echo "<font color='green'>Użytkownik dodany</font><br>";
         echo "<a href='zk.php'>Przekierowanie</a>";
     }
